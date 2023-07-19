@@ -7,10 +7,10 @@ export class Mascotas {
     #id
 
     constructor({nombre,edad,raza}){
-        this.nombre = nombre
-        this.edad = edad
-        this.raza = raza
-        this.id = randomUUID()
+        this.#nombre = nombre,
+        this.#edad = edad,
+        this.#raza = raza,
+        this.#id = randomUUID()
     }
 
     dto(){

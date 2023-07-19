@@ -1,7 +1,7 @@
 export class GenericRepository {
     #dao
     constructor(dao){
-        this.dao = dao
+        this.#dao = dao
     }
 
     create(criteria){
@@ -21,6 +21,6 @@ export class GenericRepository {
     }
 
     deleteOne(criteria){
-        return this.#dao.delete(criteria)
+        return this.#dao.deleteOne(criteria)
     }
 }

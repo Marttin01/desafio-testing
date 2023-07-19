@@ -9,42 +9,52 @@ export async function handlePost (req,res,next){
         res.json({status:"correct", payload:creado})
     } catch (error) {
         console.log(error)
+        next()
+    }
+}
+
+export async function handleGetById (req,res,next){
+    try {
+        
+        const mascota = await mascotasRepository.readOne({id:req.params.mid})
+
+        res.json({status:"correct", payload:mascota})
+    } catch (error) {
+        console.log(error)
+        next()
     }
 }
 
 export async function handleGet (req,res,next){
     try {
-        if(req.params.mid){
-            const mascota = await mascotasRepository.readOne({id:req.params.mid})
-
-            res.json({status:"correct", payload:mascota})
-        }else{
-            const mascotas = await mascotasRepository.readMany()
+        const mascotas = await mascotasRepository.readMany()
     
-            res.json({status:"correct", payload:mascotas})
-        }
+        res.json({status:"correct", payload:mascotas})
     } catch (error) {
         console.log(error)
+        next()
     }
 }
 
 export async function handlePut (req,res,next){
     try {
-        const mascota = await mascotasRepository.updateOne(req.params.id,req.body)
+        const mascota = await mascotasRepository.updateOne({id:req.params.id},req.body)
 
         res.json({status:"correct", payload: mascota})
     } catch (error) {
         console.log(error)
+        next()
     }
 }
 
 export async function handleDelete (req,res,next){
     try {
-        const mascota = await mascotasRepository.deleteOne(req.params.did)
+        const mascota = await mascotasRepository.deleteOne({id:req.params.did})
         
         res.json({status:"correct", payload: mascota})
     } catch (error) {
         console.log(error)
+        next()
     }
 }
 
